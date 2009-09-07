@@ -1,0 +1,15 @@
+data/
+cache/*
+config/database.yml
+config/deploy.rb
+config/nginx.conf
+config/mongrel_cluster.yml
+log/*
+tmp/**/*
+.DS_Store
+doc/api
+doc/app
+public/assets/*
+public/page_attachments/*
+public/post_attachments/*
+public/icals/*
