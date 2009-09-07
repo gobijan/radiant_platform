@@ -1,0 +1,48 @@
+[submodule "vendor/extensions/share_layouts"]
+	path = vendor/extensions/share_layouts
+	url = git://github.com/radiant/radiant-share-layouts-extension.git
+[submodule "vendor/extensions/paperclipped"]
+	path = vendor/extensions/paperclipped
+	url = git@github.com:spanner/paperclipped.git
+[submodule "vendor/extensions/reader"]
+	path = vendor/extensions/reader
+	url = git@github.com:spanner/radiant-reader-extension.git
+[submodule "vendor/extensions/submenu"]
+	path = vendor/extensions/submenu
+	url = git@github.com:spanner/radiant-submenu-extension.git
+[submodule "vendor/extensions/forum"]
+	path = vendor/extensions/forum
+	url = git@github.com:spanner/radiant-forum-extension.git
+[submodule "vendor/extensions/taggable"]
+	path = vendor/extensions/taggable
+	url = git@github.com:spanner/radiant-taggable-extension.git
+[submodule "vendor/extensions/reader_group"]
+	path = vendor/extensions/reader_group
+	url = git@github.com:spanner/radiant-reader_group-extension.git
+[submodule "vendor/extensions/group_forum"]
+	path = vendor/extensions/group_forum
+	url = git@github.com:spanner/radiant-group_forum-extension.git
+[submodule "vendor/extensions/paperclipped_taggable"]
+	path = vendor/extensions/paperclipped_taggable
+	url = git@github.com:spanner/radiant-paperclipped_taggable-extension.git
+[submodule "vendor/extensions/podcast_page"]
+	path = vendor/extensions/podcast_page
+	url = git@github.com:spanner/radiant-podcast_page-extension.git
+[submodule "vendor/extensions/rss_page"]
+	path = vendor/extensions/rss_page
+	url = git@github.com:spanner/radiant-rss_page-extension.git
+[submodule "vendor/extensions/made_easy"]
+	path = vendor/extensions/made_easy
+	url = git@github.com:spanner/radiant-made_easy-extension.git
+[submodule "vendor/extensions/mailer"]
+	path = vendor/extensions/mailer
+	url = git@github.com:spanner/radiant-mailer-extension.git
+[submodule "vendor/extensions/paperclipped_uploader"]
+	path = vendor/extensions/paperclipped_uploader
+	url = git@github.com:spanner/radiant-paperclipped_uploader-extension.git
+[submodule "vendor/extensions/event_calendar"]
+	path = vendor/extensions/event_calendar
+	url = git@github.com:radiant/radiant-event-calendar-extension.git
+[submodule "vendor/extensions/useful"]
+	path = vendor/extensions/useful
+	url = git@github.com:spanner/radiant-useful-extension.git
