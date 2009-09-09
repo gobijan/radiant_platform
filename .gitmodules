@@ -46,3 +46,6 @@
 [submodule "vendor/extensions/useful"]
 	path = vendor/extensions/useful
 	url = git@github.com:spanner/radiant-useful-extension.git
+[submodule "vendor/extensions/paperclipped_player"]
+	path = vendor/extensions/paperclipped_player
+	url = git@github.com:spanner/radiant-paperclipped_player-extension.git
