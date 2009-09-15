@@ -20,3 +20,9 @@ config.action_controller.perform_caching             = true
 
 # needed with passenger
 IMAGE_MAGICK_PATH = "/usr/bin" 
+
+ActionMailer::Base.delivery_method = :sendmail
+ActionMailer::Base.sendmail_settings = { 
+  :location       => '/usr/sbin/sendmail', 
+  :arguments      => '-i -t'
+} 
