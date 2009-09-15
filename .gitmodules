@@ -46,3 +46,6 @@
 [submodule "vendor/extensions/paperclipped_player"]
 	path = vendor/extensions/paperclipped_player
 	url = git@github.com:spanner/radiant-paperclipped_player-extension.git
+[submodule "vendor/extensions/share_layouts"]
+	path = vendor/extensions/share_layouts
+	url = git@github.com:spanner/radiant-share-layouts-extension.git
