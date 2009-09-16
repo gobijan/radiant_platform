@@ -1,8 +1,8 @@
-## Fat Radiant
+# Fat Radiant
 
 This is a standard installation of radiant, with all the extensions we normally use to support the kind of participative site we normally make. It might possibly be useful to other people so I've made it open, but it's not your standard radiant blog installation.
 
-### Purpose
+## Purpose
 
 Most radiant sites are built in three layers. Mine are, anyway:
 
@@ -18,7 +18,7 @@ This means working through the admin interface more than one might want, but it 
 	
 The rest is normal.
 
-### Installation
+## Installation
 
 1. Check this out:
 
@@ -31,11 +31,11 @@ The rest is normal.
 	
 3. Add a few site-specific files. There are (or will be soon) anonymised templates for each of these included in the distribution:
 
-* config/database.yml
-* config/deploy.rb
-* config/nginx.conf (or whatever you prefer)
-* public/robots.txt
-* public/favicon.ico
+	* config/database.yml
+	* config/deploy.rb
+	* config/nginx.conf (or whatever you prefer)
+	* public/robots.txt
+	* public/favicon.ico
 
 4. Bootstrap the database
 
@@ -46,5 +46,27 @@ The rest is normal.
 	rake db:migrate:extensions
 
 6. Update all the extensions. At the moment you have to do this by hand because I haven't finished the combined update task. Or indeed started it.
+
+## Importing an existing site
+
+Much the same as the installation described above except for two slightly awkward steps: migrating the extensions and moving content into the database.
+
+### Extension Migrations
+
+The dependencies here mean that you can't just run db:migrate:extensions. This sequence seems to work:
+
+	rake radiant:extensions:made_easy:migrate
+	rake radiant:extensions:reader:migrate
+	rake radiant:extensions:forum:migrate
+	rake radiant:extensions:taggable:migrate
+	rake db:migrate:extensions
+
+but it will depend where you're coming from.
+
+### Moving content into the database
+
+No rocket science here: you need to take any site-specific images, stylesheets and javascripts and recreate them in the database. This will involve empty layouts for scripts and styles, with the right content-types, probably some uploading of the images you use for page furniture and then the dull but easy replacement of any image references in your stylesheets.
+
+
 
 Any questions, contact Will on will at spanner dot org.
