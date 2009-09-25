@@ -59,6 +59,7 @@ The dependencies here mean that you can't just run db:migrate:extensions. This s
 	rake radiant:extensions:reader:migrate
 	rake radiant:extensions:forum:migrate
 	rake radiant:extensions:taggable:migrate
+	rake radiant:extensions:paperclipped:migrate
 	rake db:migrate:extensions
 
 but it will depend where you're coming from.

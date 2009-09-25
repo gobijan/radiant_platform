@@ -49,3 +49,9 @@
 [submodule "vendor/extensions/share_layouts"]
 	path = vendor/extensions/share_layouts
 	url = git@github.com:spanner/radiant-share-layouts-extension.git
+[submodule "vendor/extensions/haml_filter"]
+	path = vendor/extensions/haml_filter
+	url = git://github.com/saturnflyer/radiant-haml_filter-extension.git
+[submodule "vendor/extensions/downloads"]
+	path = vendor/extensions/downloads
+	url = git@github.com:spanner/radiant-downloads-extension.git
