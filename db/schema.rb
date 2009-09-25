@@ -21,59 +21,14 @@ ActiveRecord::Schema.define(:version => 20081203140407) do
     t.integer  "updated_by_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "upload_token"
-  end
-
-  create_table "calendars", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.string   "category"
-    t.string   "slug"
-    t.integer  "created_by"
-    t.integer  "updated_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "lock_version"
-    t.integer  "site_id"
   end
 
   create_table "config", :force => true do |t|
     t.string "key",   :limit => 40, :default => "", :null => false
-    t.string "value",               :default => ""
+    t.text   "value"
   end
 
   add_index "config", ["key"], :name => "key", :unique => true
-
-  create_table "downloads", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.string   "document_file_name"
-    t.string   "document_content_type"
-    t.integer  "document_file_size"
-    t.datetime "document_updated_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "created_by_id"
-    t.integer  "updated_by_id"
-    t.integer  "lock_version"
-    t.integer  "site_id"
-  end
-
-  create_table "downloads_groups", :id => false, :force => true do |t|
-    t.integer "download_id"
-    t.integer "group_id"
-  end
-
-  create_table "events", :force => true do |t|
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.string   "title"
-    t.text     "description"
-    t.string   "location"
-    t.integer  "calendar_id"
-    t.string   "url"
-    t.integer  "site_id"
-  end
 
   create_table "extension_meta", :force => true do |t|
     t.string  "name"
@@ -83,89 +38,76 @@ ActiveRecord::Schema.define(:version => 20081203140407) do
 
   create_table "forums", :force => true do |t|
     t.string   "name"
-    t.text     "description"
-    t.integer  "site_id"
-    t.integer  "topics_count",  :default => 0
-    t.integer  "posts_count",   :default => 0
+    t.string   "description"
+    t.integer  "topics_count",     :default => 0
+    t.integer  "posts_count",      :default => 0
     t.integer  "position"
-    t.integer  "lock_version",  :default => 0
+    t.text     "description_html"
+    t.integer  "filter_id"
+    t.integer  "lock_version",     :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
-    t.integer  "reader_id"
     t.boolean  "for_comments"
-    t.integer  "old_id"
   end
 
-  add_index "forums", ["site_id"], :name => "index_forums_on_site_id"
-
-  create_table "forums_groups", :id => false, :force => true do |t|
-    t.integer "forum_id"
-    t.integer "group_id"
+  create_table "labellings", :force => true do |t|
+    t.integer "label_id"
+    t.string  "labelled_type"
+    t.integer "labelled_id"
   end
 
-  create_table "groups", :force => true do |t|
-    t.string   "name"
+  add_index "labellings", ["labelled_type", "labelled_id"], :name => "index_labellings_on_labelled"
+
+  create_table "labels", :force => true do |t|
+    t.string   "title"
     t.text     "description"
-    t.text     "notes"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
-    t.integer  "homepage_id"
-    t.integer  "site_id"
-    t.integer  "lock_version"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "icals", :force => true do |t|
-    t.integer  "calendar_id"
-    t.string   "url"
-    t.integer  "last_refresh_count"
-    t.datetime "last_refresh_date"
-    t.string   "username"
-    t.string   "password"
-    t.boolean  "use_https"
-    t.integer  "refresh_interval"
-    t.integer  "site_id"
-  end
+  add_index "labels", ["title"], :name => "index_labels_on_title"
 
   create_table "layouts", :force => true do |t|
-    t.string   "name",              :limit => 100
+    t.string   "name",          :limit => 100
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
-    t.string   "content_type",      :limit => 40
-    t.integer  "lock_version",                     :default => 0
-    t.string   "default_filter_id", :limit => 25
+    t.string   "content_type",  :limit => 40
+    t.integer  "lock_version",                 :default => 0
   end
 
-  create_table "memberships", :force => true do |t|
-    t.integer "group_id"
-    t.integer "reader_id"
+  create_table "moderatorships", :force => true do |t|
+    t.integer "forum_id"
+    t.integer "user_id"
   end
 
-  create_table "message_readers", :force => true do |t|
-    t.integer  "site_id"
-    t.integer  "message_id"
-    t.integer  "reader_id"
-    t.datetime "sent_at"
+  add_index "moderatorships", ["forum_id"], :name => "index_moderatorships_on_forum_id"
+
+  create_table "monitorships", :force => true do |t|
+    t.integer "topic_id"
+    t.integer "user_id"
+    t.boolean "active",   :default => false
   end
 
-  create_table "messages", :force => true do |t|
-    t.integer  "site_id"
-    t.string   "subject"
-    t.text     "body"
-    t.text     "filter_id"
+  create_table "old_page_attachments", :force => true do |t|
+    t.string   "content_type"
+    t.string   "filename"
+    t.integer  "size"
+    t.integer  "parent_id"
+    t.string   "thumbnail"
+    t.integer  "width"
+    t.integer  "height"
     t.datetime "created_at"
+    t.integer  "created_by"
     t.datetime "updated_at"
-    t.integer  "created_by_id"
-    t.integer  "updated_by_id"
-    t.integer  "lock_version"
-    t.integer  "group_id"
-    t.string   "function"
+    t.integer  "updated_by"
+    t.integer  "page_id"
   end
 
   create_table "page_attachments", :force => true do |t|
@@ -200,9 +142,9 @@ ActiveRecord::Schema.define(:version => 20081203140407) do
     t.integer  "lock_version",                   :default => 0
     t.string   "description"
     t.string   "keywords"
-    t.boolean  "commentable",                    :default => true
-    t.boolean  "comments_closed",                :default => false
-    t.integer  "behavior_id"
+    t.integer  "position"
+    t.boolean  "commentable"
+    t.boolean  "comments_closed"
   end
 
   add_index "pages", ["class_name"], :name => "pages_class_name"
@@ -210,76 +152,18 @@ ActiveRecord::Schema.define(:version => 20081203140407) do
   add_index "pages", ["slug", "parent_id"], :name => "pages_child_slug"
   add_index "pages", ["virtual", "status_id"], :name => "pages_published"
 
-  create_table "permissions", :force => true do |t|
-    t.integer "group_id"
-    t.integer "page_id"
-  end
-
-  create_table "post_attachments", :force => true do |t|
-    t.integer  "post_id"
-    t.integer  "reader_id"
-    t.integer  "position"
-    t.string   "file_file_name"
-    t.string   "file_content_type"
-    t.integer  "file_file_size"
-    t.datetime "file_updated_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "posts", :force => true do |t|
-    t.integer  "reader_id"
+    t.integer  "user_id"
     t.integer  "topic_id"
-    t.integer  "forum_id"
-    t.integer  "site_id"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "created_by_id"
-    t.integer  "updated_by_id"
-    t.integer  "old_id"
+    t.integer  "forum_id"
+    t.text     "body_html"
   end
 
   add_index "posts", ["forum_id", "created_at"], :name => "index_posts_on_forum_id"
-  add_index "posts", ["reader_id", "created_at"], :name => "index_posts_on_reader_id"
-  add_index "posts", ["site_id"], :name => "index_posts_on_site_id"
-
-  create_table "readers", :force => true do |t|
-    t.integer  "site_id"
-    t.string   "name",                    :limit => 100
-    t.string   "email"
-    t.string   "login",                   :limit => 40,  :default => "",    :null => false
-    t.string   "crypted_password"
-    t.text     "description"
-    t.text     "notes"
-    t.boolean  "trusted",                                :default => true
-    t.boolean  "receive_email",                          :default => false
-    t.boolean  "receive_essential_email",                :default => true
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "created_by_id"
-    t.integer  "updated_by_id"
-    t.string   "password_salt"
-    t.string   "session_token"
-    t.string   "provisional_password"
-    t.datetime "activated_at"
-    t.string   "honorific"
-    t.integer  "user_id"
-    t.datetime "last_request_at"
-    t.datetime "last_login_at"
-    t.string   "persistence_token",                                         :null => false
-    t.string   "single_access_token",                                       :null => false
-    t.string   "perishable_token",                                          :null => false
-    t.integer  "login_count",                            :default => 0,     :null => false
-    t.integer  "failed_login_count",                     :default => 0,     :null => false
-    t.string   "current_login_ip"
-    t.string   "last_login_ip"
-    t.string   "clear_password"
-    t.integer  "posts_count",                            :default => 0
-    t.integer  "old_id"
-  end
-
-  add_index "readers", ["session_token"], :name => "session_token"
+  add_index "posts", ["user_id", "created_at"], :name => "index_posts_on_user_id"
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id"
@@ -303,68 +187,72 @@ ActiveRecord::Schema.define(:version => 20081203140407) do
 
   add_index "snippets", ["name"], :name => "name", :unique => true
 
-  create_table "taggings", :force => true do |t|
-    t.integer "tag_id"
-    t.string  "tagged_type"
-    t.integer "tagged_id"
-  end
-
-  add_index "taggings", ["tag_id", "tagged_id", "tagged_type"], :name => "index_taggings_on_tag_id_and_tagged_id_and_tagged_type", :unique => true
-
-  create_table "tags", :force => true do |t|
-    t.string   "title"
-    t.text     "description"
-    t.integer  "created_by_id"
-    t.integer  "updated_by_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "site_id"
-  end
-
-  add_index "tags", ["title"], :name => "index_tags_on_title", :unique => true
-
   create_table "topics", :force => true do |t|
     t.integer  "forum_id"
-    t.integer  "site_id"
-    t.integer  "reader_id"
-    t.string   "name"
+    t.integer  "user_id"
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "hits",         :default => 0
+    t.integer  "sticky",       :default => 0
+    t.integer  "posts_count",  :default => 0
     t.datetime "replied_at"
-    t.integer  "hits",          :default => 0
-    t.boolean  "sticky",        :default => false
-    t.integer  "posts_count",   :default => 0
-    t.integer  "first_post_id"
+    t.boolean  "locked",       :default => false
+    t.integer  "replied_by"
     t.integer  "last_post_id"
-    t.boolean  "locked",        :default => false
-    t.integer  "replied_by_id"
     t.integer  "page_id"
-    t.integer  "created_by_id"
-    t.integer  "updated_by_id"
-    t.integer  "old_id"
   end
 
   add_index "topics", ["forum_id", "replied_at"], :name => "index_topics_on_forum_id_and_replied_at"
   add_index "topics", ["forum_id", "sticky", "replied_at"], :name => "index_topics_on_sticky_and_replied_at"
   add_index "topics", ["forum_id"], :name => "index_topics_on_forum_id"
   add_index "topics", ["page_id"], :name => "index_topics_on_page_id"
-  add_index "topics", ["site_id"], :name => "index_topics_on_site_id"
 
-  create_table "users", :force => true do |t|
-    t.string   "name",          :limit => 100
-    t.string   "email"
-    t.string   "login",         :limit => 40,  :default => "",    :null => false
-    t.string   "password",      :limit => 40
+  create_table "user_config", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "user_property_id"
+    t.string   "user_property_value"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
-    t.boolean  "admin",                        :default => false, :null => false
-    t.boolean  "developer",                    :default => false, :null => false
+  end
+
+  create_table "user_properties", :force => true do |t|
+    t.string   "key"
+    t.string   "title"
+    t.string   "default"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "created_by_id"
+    t.integer  "updated_by_id"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "name",                 :limit => 100
+    t.string   "email"
+    t.string   "login",                :limit => 40,  :default => "",    :null => false
+    t.string   "password",             :limit => 40
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "created_by_id"
+    t.integer  "updated_by_id"
+    t.boolean  "admin",                               :default => false, :null => false
+    t.boolean  "developer",                           :default => false, :null => false
     t.text     "notes"
-    t.integer  "lock_version",                 :default => 0
+    t.integer  "lock_version",                        :default => 0
     t.string   "salt"
+    t.integer  "posts_count",                         :default => 0
+    t.text     "description"
+    t.text     "description_html"
+    t.boolean  "receive_email"
+    t.string   "activation_code"
+    t.string   "provisional_password"
+    t.string   "plaintext_password"
+    t.datetime "activated_at"
     t.string   "session_token"
+    t.string   "honorific"
   end
 
   add_index "users", ["login"], :name => "login", :unique => true
