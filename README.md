@@ -64,7 +64,7 @@ The dependencies here mean that you can't just run db:migrate:extensions. This s
 
 but it will depend where you're coming from.
 
-### Moving content into the database
+### Moving site-specific material into the database
 
 No rocket science here: you need to take any site-specific images, stylesheets and javascripts and recreate them in the database. This will involve empty layouts for scripts and styles, with the right content-types, probably some uploading of the images you use for page furniture and then the dull but easy replacement of any image references in your stylesheets.
 

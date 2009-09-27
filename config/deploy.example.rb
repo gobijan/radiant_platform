@@ -24,7 +24,8 @@ after "deploy:setup" do
   sudo "mkdir -p #{shared_path}/config" 
   sudo "chown -R #{user}:#{group} #{shared_path}"
   sudo "chown #{user}:#{group} /var/www/#{application}/releases"
-  sudo "ln -s #{shared_path}/config/nginx.conf /etc/nginx/sites-available/#{application}"   # for nginx on ubuntu
+  sudo "touch #{shared_path}/config/nginx.conf"
+  sudo "ln -s #{shared_path}/config/nginx.conf /etc/nginx/sites-available/#{application}"   # for nginx on debian/ubuntu
 end
 
 after "deploy:update" do
