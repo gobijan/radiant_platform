@@ -3,6 +3,7 @@ var nowt = "";
 window.addEvent('domready', function() {
   $$('div.gallery').each( function (element) { new Gallery(element); }); 
   $$('div.minigallery').each( function (element) { new Minigallery(element); }); 
+  $$('div.image_list').each( function (element) { new Minigallery(element); }); 
 });
 
 var blockEvent = function (e) {
@@ -13,6 +14,23 @@ var blockEvent = function (e) {
     return event;
   }
 };
+
+var ImageList = new Class({
+  
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 var Gallery = new Class({
   initialize: function (element) { 
