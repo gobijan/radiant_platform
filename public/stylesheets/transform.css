@@ -1,0 +1,80 @@
+.transform_form {
+  width: 500px;
+}
+
+.transform_container {
+	padding: 5px 0px 12px 0px;
+}
+
+.transform_choice_container {
+	width: 150px;
+	margin: 0px;
+	float: left;
+	background-color: #d1e1fc;
+	padding-top: 6px;
+	padding-bottom: 10px;
+	height: auto;
+}
+
+.transform_choice {
+	padding: 4px;
+	font-size: 1em;
+	color: #fff;
+	width: 142px;
+	background-color: #d1e1fc;
+}
+
+.transform_choice {
+	color: #000;
+}
+
+.transform_current {
+	background: #fafaff;
+	color: #000;
+	border-right-color: #fff;
+}
+
+.transform_input_container {
+	width: 332px;
+	height: 200px;
+	overflow: auto;
+	margin: 0px;
+	padding: 7px;
+	float: right;
+	background-color: #fafaff;
+}
+
+.add_border_container {
+	background-color: #d1e1fc;
+	border: 2px solid #C3D9FF;
+}
+
+.transform_title {
+	margin-bottom: 3px;
+}
+
+.help {
+	font-size: 0.75em;
+}
+
+.transform_input input.asset_picker {
+  display: none;
+}
+
+.transform_input img.asset_thumbnail {
+  border: 4px solid white;
+}
+
+.transform_input img.selected_thumbnail {
+  border: 4px solid #c00;
+}
+
+
+#asset-upload .file { padding: 10px 10px 5px; }
+#asset-upload .upload-buttons { padding: 0 10px; font-size: 80%; }
+#asset-upload label { margin-bottom: 5px; display: block; font-weight: bold; margin-left: 10px;  }
+#asset-upload iframe { width: 1px; height: 1px; border: 0; }
+#asset-upload .spinner { display: none; width: 16px; height: 16px; background-image: url(/images/admin/spinner.gif);}
+#asset-upload.waiting { color: #666;}
+#asset-upload.waiting .spinner { display: block;}
+#asset-upload.waiting .button { display: none;}
