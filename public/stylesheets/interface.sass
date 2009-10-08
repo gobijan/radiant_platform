@@ -1,0 +1,925 @@
+!bg = #4d4e53
+!page = #ffffff
+!text = #000000
+!accent = #788678
+!emphasis = #d1005d
+!verypale = #e0ded8
+!pale = #8c8d8e
+!dark = #4d4e53
+!mh = #e0ded8
+
+!headbg = #8F8872
+!foot = #8F8872
+
+/navigation colours
+!navbg = #B5AD91
+!navlinks = #9f9e99
+!weaknavlinks = #c594b0
+!strongnavlinks = #636f65
+
+/table backgrounds
+!darkgrey = #cacac8
+!midgrey = #d6d6d4
+!lightgrey = #e2e1dd
+
+/layout variables
+!page_width = 757px
+!main_width = 500px
+!margin_width = 240px
+
+
+=bodyfonts
+  :font-family Georgia,Palatino,Sylfaen,"Times New Roman", Times, serif
+=headerfonts
+  :font-family 'HelveticaNeue-Light', helvetica, arial, sans-serif
+=smallfonts
+  :font-family helvetica, arial, sans-serif
+  :font-size 0.8em 
+  :line-height 1.4
+=navigationfonts
+  :font-family HelveticaNeue-Roman, helvetica, arial, sans-serif
+=inputstyles
+  :font-family Georgia,Palatino,Sylfaen,"Times New Roman", Times, serif
+  :font-size 1.2em
+  :line-height 1
+  :color = !dark
+  :border
+    :width 1px
+    :style solid
+    :color = !pale
+  :padding 5px
+
+body
+  :margin 0
+  :padding 0 
+  +bodyfonts
+  :font-size 0.9em
+  :line-height 1.6
+  :background-color = !bg
+  :color = !text
+  :overflow-x hidden 
+
+///////////////////////////// some basic conventions
+
+a, a:link
+  :text-decoration none
+  :color = !accent
+a:hover
+  :color =!emphasis
+img
+  :border 0
+  :margin 0
+  :padding 0
+ul,ol
+  :color = !dark
+  li
+    :margin-bottom  4px
+ul
+  :padding-left 12px
+  :list-style square
+ol
+  :padding-left 16px
+blockquote
+  :margin-left 12px
+  :color = !pale
+
+
+///////////////////////////// widely-used modifications
+
+.hidden, .separator
+  :display none
+.spaced
+  :margin-left 20px
+.has_error
+  :color red
+.pale
+  :color = !pale
+.small
+  +smallfonts
+  :color = !pale
+.date
+  :color = !pale
+.notyet
+  :color = !pale
+  :text-decoration line-through
+.quiet
+  +smallfonts
+  :color = !pale
+
+div.floatleft, div.floatright
+  :margin 0 0 12px 0
+  +smallfonts
+  :font-size 10px
+  :color = !pale
+  :margin-right 20px
+  :margin-top 10px
+  :line-height 1.2
+div.floatleft
+  :float left
+div.floatright
+  :float right
+
+a.listlink
+  :font-weight bold
+
+h1, h2, h3, h4
+  +headerfonts
+  :margin-bottom 0
+  :font-size 20px
+  :font-weight lighter
+  :letter-spacing -0.02em
+  :line-height  1.2
+  a.breadhead
+    :font-weight lighter
+    :display block
+    :letter-spacing 0
+    :font-size 40%
+    :color =!pale
+
+table.clean
+  :border 1pt solid #666
+  :border-collapse collapse
+  +smallfonts
+
+label
+  +headerfonts
+  :font-size 16px
+
+td.ul, th.ul
+  +smallfonts
+  :border-spacing 10px
+  :border-bottom 1pt solid #666
+  :border-collapse collapse
+  :padding 4px
+  :text-align left
+  :color = !text
+td.dark, th.dark
+  :background-color = !darkgrey
+td.med, th.med
+  :background-color = !midgrey
+  :font-weight bold
+td.light, th.light
+  :background-color = !lightgrey
+
+table.striped
+  :border-collapse collapse
+  th, td
+    :padding 4px
+    +smallfonts
+  tr.even
+    th, td
+      :background-color = !lightgrey
+    
+p.standfirst
+  :font-weight bold
+p.footnote
+  +smallfonts
+  :color = !pale
+p.caption
+  +smallfonts
+  :color = !pale
+p.acrobat_link 
+  +smallfonts
+  :color = !pale
+  :text-align center
+  :margin 1px 0 4px 0
+
+///////////////////////////// main page layout
+
+#preamble
+  :text-align left
+  :height 32px
+#wrapper
+  :position relative
+  :text-align left
+  :width = !page_width
+  :margin 0 auto 0 auto
+  :z-index 2000
+#page
+  :position relative
+  :margin 25px 0 0 0
+  :padding 22px 36px 40px 40px
+  :background-color = !page
+  :z-index 3000
+h1.pagetitle
+  :font-size 280%
+  :margin 6px 0 10px 0
+#pagecontent
+  :position relative
+#content
+  :position relative
+
+/******** masthead
+
+#masthead
+  :position relative
+  :width = !page_width
+  :height 64px
+  :padding 0
+  :overflow hidden
+  :background
+    :color = !headbg
+    :repeat repeat-x
+    :position top left
+    :image url(<r:assets:url id="162" size="original" />)
+  :z-index 4000
+#sitehead
+  :width 430px
+  :height 64px
+  +headerfonts
+  :font-size 27px !important
+  :font-size 25px
+  :white-space nowrap
+  :background-repeat no-repeat
+  :background-position top left
+#sitehead a
+  :color = !mh
+  :display block
+  :height 64px
+  :padding 16px 10px 0 40px
+#sitehead em
+  :color = !page
+  :font-style normal
+  :font-weight bold
+#sponsor
+  :float right
+  :height 64px
+  :text-align left
+  :background-repeat no-repeat
+  :background-position top right
+#sponsor a
+  :display block
+  :font-size 11px
+  :line-height 13px
+  :font-family helvetica, arial, sans-serif
+  :height 43px
+  :width 250px
+  :color = !mh
+  :background url(<r:assets:url id="160" size="original" />) no-repeat top right
+  :margin 10px 30px 0 0
+  :padding-top 12px
+  :overflow hidden
+#sponsor a:hover
+  :color = !page
+  :background-image url(<r:assets:url id="159" size="original" />)
+
+/******** navigation
+
+div#navigation
+  :position absolute
+  :width 757px
+  :margin 1px 0 1px 0
+  :background #e0e0dd url(<r:assets:url id="166" size="original" />) repeat-x top right
+  :overflow hidden
+  :z-index 5000
+  :border-bottom 1px solid #333
+  :opacity 0.95
+  div.navigation_closer
+    :position absolute
+    :bottom 0
+    :left 0
+    :overflow hidden
+    :padding 10px 14px 0 14px
+    img
+      :position absolute
+      :bottom 0
+  table
+    :border-collapse collapse
+    :font-size 85%
+    :margin 0 24px 0 13px
+    :width 715px
+    thead
+      :height 20px
+    th
+      :width 143px
+      :text-align left
+      :vertical-align top
+      :border 0
+      +navigationfonts
+      :background url(<r:assets:url id="164" size="original" />) repeat-y top right
+      :padding 3px 18px 1px 16px
+      a, a:visited
+        :color = !strongnavlinks
+      a.notready
+        :color #e74d9e
+        :text-decoration line-through
+    th.noborder, td.noborder
+      :background-image none
+    td
+      :width 143px
+      :text-align left
+      :vertical-align top
+      :border 0
+      +navigationfonts
+      :background url(<r:assets:url id="172" size="original" />) repeat-y top right
+      :padding 2px 18px 1px 16px
+      a, a:visited
+        :color = !navlinks
+      a:hover
+        :color = !strongnavlinks
+      a.notready
+        :color #e74d9e
+        :text-decoration line-through
+      ul
+        :list-style none
+        :padding 0
+        :margin 0
+    tr.bottom
+      :height 8px
+      :background url(<r:assets:url id="174" size="original" />) repeat-x top left
+      td
+        :height 8px
+        :background url(<r:assets:url id="171" size="original" />) repeat-y top right
+        :overflow hidden
+    td.last, th.last
+      :padding-right 24px
+      :background none
+    td.first, th.first
+      :padding-left 24px
+div#navigation.open
+  :background-image url(<r:assets:url id="167" size="original" />)
+  :height auto
+  th
+    :background-image url(<r:assets:url id="163" size="original" />)
+div#navigation_opener
+  :position absolute
+  :top 70px
+  :left 0
+  :overflow hidden
+  :padding 10px 14px 0 14px
+  :z-index 4500
+
+/******** date strapline
+
+div#strap
+  +smallfonts
+  :color = !pale
+
+/******** marginalia
+
+#sidebar
+  :position relative
+  :float right
+  :z-index 3500
+  :margin 0
+  :padding-left 20px
+  :width 258px
+  +smallfonts
+  :color = !dark
+  h2, h3, h4
+    :margin-top 0
+  ul
+    :padding 0
+    li
+      :clear left
+      a
+        :font-weight bold
+  ul.minimal
+    :list-style none
+  
+/******** footer and postscript
+
+#breadcrumbs
+  :position relative
+  :clear both
+  :margin 20px 0 20px 0
+  +smallfonts
+  :color = !pale
+  
+#footer
+  :position relative
+  :width = !page_width
+  :height 38px
+  :margin 0 0 30px 0
+  :background
+    :color = !foot
+    :image url(<r:assets:url id="154" size="original" />) 
+    :repeat no-repeat
+    :position top left
+  :overflow hidden
+  :z-index 4590
+  #searchform
+    :float right
+    :padding 0 24px 0 0
+    :overflow hidden
+  p
+    :margin 8px 0 3px 32px
+    +smallfonts
+    :color = !page
+  a
+    :color = !verypale
+#footertabs
+  :position relative
+  :width = !page_width
+  :height 111px
+  div.tabheads
+    :position relative
+    :background-color = !page
+    :padding-left 40px
+    :overflow hidden
+    :height 22px
+    a
+      :display block
+      :float left
+      :height 22px
+      :line-height 22px
+      :padding 2px 6px 0 6px
+      :margin 2px 1px 0 0
+      :background
+        :color #697366
+        :image url(<r:assets:url id="156" size="original" />) 
+        :repeat repeat-x
+        :position top left
+      +smallfonts
+      :color = !verypale
+    a.fg, a.fg:visited
+      :background
+        :color #707870
+        :image url(<r:assets:url id="155" size="original" />) 
+        :repeat repeat-x
+        :position top left
+      :margin-top 0
+      :color = !page
+  div.tabbodies 
+    :position relative
+    :height 91px
+    :background
+      :color #707870
+      :image url(<r:assets:url id="157" size="original" />) 
+      :repeat repeat-x
+      :position top left
+    :overflow hidden
+  div.tabbody 
+    :display none
+    :margin 0 40px
+    :color = !mh
+    :font-size 95%
+    h2
+      :color = !page
+      :font-size 160%
+      :float left
+      :margin 0 6px 0 0
+    p
+      :margin 16px 0 0 0
+      :padding 6px 0 0 0
+      a, a:visited
+        :color = !page
+  div.fg
+    :display block
+
+#postscript
+  :clear both
+  :width = !page_width
+  :margin 60px auto 6px
+  :text-align center
+  :min-height 30px
+  :color = !page
+  +smallfonts
+  a
+    :color = !pale
+  a:hover
+    :color white
+    :text-decoration none
+
+
+
+
+///////////////////////////// library page
+
+ul.imagelist
+  :list-style none
+  :margin 0
+  :padding 0
+  li
+    :display inline
+    a
+      :border 1px solid white
+    a:hover
+      :border 1px solid #d1005d
+img.preview
+  :position absolute
+  :border 4px solid white
+
+///////////////////////////// tag clouds
+
+!cloud_top_color = !bg
+!cloud_top_weight = 700
+!cloud_top_size = 2.4
+!em = em
+
+!add_cloud_base = #5da454
+!remove_cloud_base = #AF473D
+
+ul.cloud
+  :position relative
+  :list-style none
+  :margin 0
+  :padding 0
+  :overflow hidden
+  :line-height 1.6em
+  :margin-left -5px 
+  li
+    :display inline
+    :float left
+    :letter-spacing -0.04em
+    :height 1.6em
+    a
+      :padding 5px
+      :color !cloud_base
+    a:hover
+      :padding-left 15px
+      :margin-left -10px
+      :opacity 1.0
+      :background
+        :color transparent
+        :image url(/images/admin/expand.png) 
+        :repeat no-repeat 
+        :position left center
+
+a.detag
+  :padding-left 15px
+  :background
+    :color transparent
+    :image url(/images/admin/collapse.png) 
+    :repeat no-repeat 
+
+///////////////////////////// mini calendar blocks
+
+table.minimonth
+  :border-collapse collapse
+  :border 1px solid #ccc
+  :color #4d4e53
+  :margin-bottom 10px
+  th, td 
+    :border 1px solid #afafaf
+    :padding 3px
+    :vertical-align middle
+    :text-align center
+  td 
+    :width 24px
+    :overflow hidden
+    :line-height 20px
+    :padding-top 4px
+  th.month_name 
+    :font-size 125%
+    :font-weight normal
+    :color black
+  td.other_month 
+    :color = !pale
+    :background-color = !page
+  td.weekend_day 
+    :background-color  #eee
+  td.eventful 
+    :background-color  #fee
+  td.eventful_weekend 
+    :background-color  #edd
+  td.today 
+    :background-color= !midgrey
+    :color = !page
+    :font-weight bold
+  td.other_month a 
+    :color = !pale
+
+///////////////////////////// event list
+
+div.event_list p 
+  :margin  6px 0
+
+div.event_list a.title 
+  :text-decoration underline
+
+div.event_list p span.location 
+  +smallfonts
+  :color = !pale
+
+div.event_list p span.description 
+  :color = !dark
+  :padding-left 44px
+
+acronym.date 
+  :font-weight bold
+
+span.date-month 
+  :display block 
+  :font-size 12px
+  :margin 0 
+  :padding 0
+  :line-height 1
+
+span.date-day  
+  :display block 
+  :font-size 20px
+  :margin 0 
+  :padding 0  
+
+a.ical 
+  :margin  0 2px 8px 2px
+
+///////////////////////////// reader interface elements
+
+form.friendly
+  p
+    :margin 1em 0 0 0
+  input.titular 
+    :clear both 
+    :width 95%
+    +inputstyles
+    :font-size 200%
+  textarea, select, input.standard 
+    :width 95%
+    +inputstyles
+  input.login 
+    :width 50%
+    +inputstyles
+  textarea 
+    :line-height 1.2
+  span.formnote 
+    +smallfonts
+  div.error-with-field 
+    :display inline
+  small.error 
+    :display none
+  p.haserror 
+    :border-left
+      :width 4px
+      :style solid
+      :color = !emphasis
+    :margin-left -16px
+    :padding-left 12px
+    :color = !emphasis
+    input, textarea 
+      :border
+        :width 1px
+        :style solid
+        :color = !emphasis
+    label 
+      :color = !emphasis
+  p.context
+    :margin 0
+  div.innocuous 
+    :display none
+  label.required 
+    :font-weight bold
+
+ul.friendly 
+  :list-style square
+  +smallfonts
+  :color = !dark
+  :padding-left 0
+  :margin-top 0
+
+a.newmessage
+  :display block
+  +headerfonts
+  :font-size 1.6em
+
+h2.inviting, a.inviting
+  :display block
+  +headerfonts
+  :font-weight bold
+  :font-size 1.6em
+  :margin-bottom 0
+  :margin-top 50px
+
+img.gravatar 
+  :float left
+  :margin 0 10px 3px 0
+img.thumbnail_gravatar 
+  :float left
+  :margin 2px 10px 10px 0
+img.big_gravatar 
+  :float left
+  :margin 8px 10px 4px 0
+
+.notice, .error 
+  :position absolute
+  :width 250px
+  :right 0
+  :background-color inherit
+  :color white
+  :margin 0
+  :padding .75em
+  :padding-top 0
+  :padding-bottom 0
+
+.notice 
+  :background-color #0c3
+  :border 3px solid #7FE699
+
+.error 
+  :background-color #c00
+  :border 3px solid #ff0071
+
+#reader_links 
+  :font-size 80%
+
+///////////////////////////// pagination
+
+div.pagination 
+  :font-family helvetica, arial, sans-serif
+  :font-size .8em
+  span.pagination_summary 
+    :color = !pale
+    :float right
+  p.pagination_summary a 
+    :color = !accent
+  a 
+    :padding 6px 8px 5px 8px
+    :-moz-border-radius 4px
+    :-webkit-border-radius 4px
+  a:hover 
+    :background-color = !emphasis
+    :color white
+    :text-decoration none
+  span.current 
+    :padding 6px 8px 5px 8px
+    :margin-right 2px
+    :background-color = !pale
+    :color white
+    :-moz-border-radius 4px
+    :-webkit-border-radius 4px
+  span.disabled 
+    :padding 6px 8px 5px 8px
+    :margin-right 2px
+    :color = !pale
+
+///////////////////////////// forum
+
+div#forum 
+  :font-family helvetica, arial, sans-serif
+  h1, h2 
+    :margin-bottom 24px
+    :line-height 1.2
+  a.floating 
+    :float right
+    :margin 0 0 10px 20px
+  a.feedlink 
+    :background url(/images/forum/feed_14.png) no-repeat 0 4px
+    :padding-left 18px
+    :color #f58822
+  img.feedicon 
+    :margin 3px 0 0 4px
+  div#forum_preamble 
+    :color = !dark
+    :margin-bottom 24px
+    :margin-top 10px
+    p 
+      :margin-top 0
+  div.reply 
+    :margin-left 0
+  div.first_post 
+    :margin-left 0
+  div.post_header 
+    a.replied 
+      :color = !pale
+
+///////////////////////////// forum listings
+
+ul.main 
+  :list-style none
+  :margin 20px 0 50px 0
+  :padding 0
+  li 
+    :clear left
+    :margin 30px 0
+    .subject a, .subject a:visited 
+      :font-family helvetica, arial, sans-serif
+      :font-size 160%
+      :font-weight bold
+      :line-height 1
+    .context, .updatenote
+      :display block
+      +smallfonts
+      :color = !pale
+    div.preview 
+      :font-size 85%
+      :color = !dark
+      p 
+        :margin-top 5px
+  li.sticky 
+    .subject a, .subject a:visited 
+      :color = !emphasis
+  li.locked
+    .subject a, .subject a:visited 
+      :color = !dark
+
+///////////////////////////// message display
+
+div#forum 
+  div.post 
+    :position relative
+    :clear left
+    :margin 10px 0 30px 0
+  div.first_post 
+    :margin-top 0
+    :clear both
+  div.post_header 
+    h2 
+      :margin 0
+      :font-weight lighter
+      :line-height 1.1
+  div.post_body
+    :position relative
+  div.post_body
+    div.post 
+      p 
+        :margin-top 4px
+      blockquote 
+        :color = !pale
+        :border-left
+          :width 5px
+          :style solid
+          :color = !lightgrey
+        :margin 0
+        :padding-left 20px
+  div.over 
+    :background-color #e2e1dc
+  div.post_control 
+    :font-size 85%
+    :color = !pale
+    p 
+      :margin 0
+    p.post_admin 
+      :text-align right
+    a 
+      :color = !accent
+    a.edit_post 
+      :color = !emphasis
+    a.delete_post 
+      :padding-left 5px
+      :color #d1005d
+    a:hover 
+      :color #1bb68b
+    a.waiting, div#forum p.waiting 
+      :color = !pale
+      :padding-left 18px
+      :background transparent url(/images/forum/wait_16_grey.gif) no-repeat left top
+  div.post_wrapper 
+    :position relative
+    div.post_form 
+      :margin 0 0 20px 0
+      :padding 0
+      :background white url(/images/forum/wait_16_grey.gif) no-repeat center center
+      form 
+        :background-color = !page
+        :margin 0
+        label 
+          :display none
+        textarea 
+          :left 0
+          :right 0
+          :color = !dark
+          :border-color = !lightgrey
+          :font-size normal
+          :font-size 1em
+        p 
+          :margin 0
+
+img.smiley 
+  :margin 3px 3px 0 3px
+
+
+///////////////////////////// post attachments
+
+div.upload_handler, div.post_attachments 
+  :margin 0 0 30px 0
+  :border-left 
+    :width 5px
+    :style solid
+    :color = !lightgrey
+  :padding-left 20px
+  h4
+    :margin 0
+    +smallfonts
+    :color = !pale
+    :margin -3px 0 2px -10px
+  ul 
+    :margin 0
+    :list-style none
+    :padding 0
+  li
+    :clear none
+    :margin 0
+  a.attachment 
+    :background url(/images/forum/icons/attachment.png) no-repeat 0 2px
+    :padding-left 18px
+  a.attachment:hover
+    :background-image url(/images/forum/icons/attachment_new.png)
+  a.remove 
+    :font-family helvetica, arial, sans-serif
+    :font-size 50%
+
+a.cancel, a.remove 
+  :color = !emphasis
+a.cancel:hover, a.remove:hover 
+  :background-color = !emphasis
+  :color = !page
+
+/*** some hiding on the assumption that the form is scripted ***/
+
+div.upload_handler ul.attachments input 
+  :display none
+div.uploads 
+  :display none
+div.upload_handler ul li 
+  :color #1bb68b
