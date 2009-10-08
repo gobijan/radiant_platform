@@ -83,6 +83,7 @@ var Post = new Class({
   }
 });
 
+var uh = null;
 var UploadHandler = new Class({
   initialize: function (div) {
     this.container = div;
@@ -105,6 +106,7 @@ var UploadHandler = new Class({
     this.shower.addEvent('click', this.toggle.bindWithEvent(this));
 
     this.reveal.hide();
+    uh = this;
   },
   toggle: function (e) {
     if (e) e.block();

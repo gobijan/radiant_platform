@@ -96,14 +96,10 @@ ActiveRecord::Schema.define(:version => 20081203140407) do
     t.integer  "reader_id"
     t.boolean  "for_comments"
     t.integer  "old_id"
+    t.integer  "group_id"
   end
 
   add_index "forums", ["site_id"], :name => "index_forums_on_site_id"
-
-  create_table "forums_groups", :id => false, :force => true do |t|
-    t.integer "forum_id"
-    t.integer "group_id"
-  end
 
   create_table "groups", :force => true do |t|
     t.string   "name"
@@ -166,6 +162,7 @@ ActiveRecord::Schema.define(:version => 20081203140407) do
     t.integer  "lock_version"
     t.integer  "group_id"
     t.string   "function"
+    t.integer  "status_id",     :default => 1
   end
 
   create_table "page_attachments", :force => true do |t|
@@ -238,6 +235,7 @@ ActiveRecord::Schema.define(:version => 20081203140407) do
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
     t.integer  "old_id"
+    t.integer  "group_id"
   end
 
   add_index "posts", ["forum_id", "created_at"], :name => "index_posts_on_forum_id"
@@ -355,6 +353,7 @@ ActiveRecord::Schema.define(:version => 20081203140407) do
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
     t.integer  "old_id"
+    t.integer  "group_id"
   end
 
   add_index "topics", ["forum_id", "replied_at"], :name => "index_topics_on_forum_id_and_replied_at"
